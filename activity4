@@ -1,0 +1,25 @@
+
+	.data
+str: 	.byte 	0:6
+
+nl: .asciiz "\n"
+	.text
+	
+main:
+	li 	$t2,0 		# int i = 0
+	la 	$t0,str 	#$t0 -> ptr_str
+	sb 	$0,($t0) 	#ptr_str = &str
+	
+	
+loop: 
+	sb 	$0,0xa($t1)	# *ptr_str = 0xa
+	addi 	$t2,$t2,1 	# i++
+	addi 	$t1,$t1,1 	# increment ptr_str
+	bgt 	$t2,5,loop 	# i > 5
+	
+exit:  	li 	$v0,4
+	la 	$a0,nl
+	syscall
+	
+	li 	$v0,10 #exit
+	syscall

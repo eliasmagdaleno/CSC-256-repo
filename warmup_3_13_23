@@ -1,0 +1,47 @@
+
+.data
+
+x: .word 3
+
+y: .word 5
+
+nl: .asciiz "\n"
+.text
+
+
+main: 
+      
+      lw	$s0,x
+      la 	$s0,x
+      sw 	$0,($s0)
+      
+      li 	$v0,1
+      lw 	$a0,($s0)
+      syscall
+      
+      li 	$v0,4
+      la 	$a0,nl
+      syscall
+      
+      li 	$v0,1
+      move 	$a0,$s0
+      syscall
+      
+      lw 	$s2,y
+      sw 	$s2,($s0)
+      li 	$v0,1
+      lw 	$a0,($s0)
+      syscall
+      
+      li 	$v0,4
+      la 	$a0,nl
+      syscall
+      
+      
+     
+      
+      
+      
+      
+
+

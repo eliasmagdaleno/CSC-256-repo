@@ -1,0 +1,37 @@
+
+.text
+
+.data
+
+
+
+main: 			# int maim(){
+	li 	$s0,10 		# int a= 10;
+				# int result;
+	move 	$a0,$s0		# result = callee
+	jal 	callee
+	move 	$s1,$v0
+	
+exit: 	li 	$v0,10
+	syscall			#}
+	
+callee: 			# int callee(int x){
+	sw 	$ra,-4($sp)
+	addi 	$sp,$sp,-4 	# y-->$s2
+	mul	$s2,$a0,2	# int v;
+	move	$a0,$s2		# int y=2*x;
+	jal	leaf		# v = leaf(y) + 1;
+	# v0 is the return of leaf(y)
+	add	$v0,$v0,1	# return v; #}
+	lw 	$ra,($sp)
+	addi 	$sp,$sp,4
+	jr 	$ra
+
+leaf: 				# int leaf(int arg1){
+	mul $v0,$a0,$a0		# { int u;
+	mul $v0,$v0,2		# u = 2*arg1*arg1
+			#
+
+	jr $ra
+
+

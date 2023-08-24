@@ -1,0 +1,23 @@
+
+.data
+str: .asciiz "abcde" 	# char string
+.text
+
+main:	
+	li 	$s1,0	 	# count = 0
+	la 	$s0,str 	# ptr = str -> ptr = &Str[0]
+	lb 	$t0,($s0) 	# *ptr
+	
+	
+
+while:  beqz 	$t0,print	# while *ptr == 0
+	addi 	$s1,$s1,1 	#increment count
+        addi 	$s0,$s0,1 	#increment ptr
+        lb 	$t0,($s0)	# dereference
+        j 	while
+
+print:
+	li 	$v0,1 		# print integer
+	move 	$a0,$s1		
+	syscall
+	
